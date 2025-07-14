@@ -48,7 +48,7 @@ function passwordConfirmed(v: any) {
 function onSubmit(event: Event) {
     loading.value = true
     try {
-        user.passwordReset(password.value, passwordConfirmation.value)
+        user.registerUser(password.value, passwordConfirmation.value)
         router.push("/home")
     } catch (error) {
         console.error(error)
