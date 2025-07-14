@@ -4,6 +4,8 @@
         </v-btn>
     </v-app-bar>
     <v-main>
+        <v-alert v-if="passwordUpdated" title="Password successfully updated" type="success">
+        </v-alert>
         <v-card class="mx-auto px-6 py-8" max-width="344">
             <v-form v-model="form" @submit.prevent="onSubmit">
                 <v-text-field type="password" v-model="password" :readonly="loading" :rules="[required]"
@@ -21,8 +23,6 @@
                 </v-btn>
             </v-form>
         </v-card>
-        <v-alert v-if="passwordUpdated" title="Password successfully updated" type="success">
-        </v-alert>
     </v-main>
 </template>
 
