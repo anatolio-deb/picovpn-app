@@ -57,9 +57,9 @@ function onSubmit(event: Event) {
         console.error(error)
     } finally {
         loading.value = false
-        if (passwordUpdated.value == true) {
-            router.push("/home")
-        }
+        // if (passwordUpdated.value == true) {
+        //     router.push("/home")
+        // }
     }
 }
 </script>
