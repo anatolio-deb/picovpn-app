@@ -31,8 +31,12 @@ export const useUserStore = defineStore('users', {
     }).then((response) => {
             if (response.status === 200) {
               this.userData = response.data.user
+            } else {
+                throw new Error(response.data.message);
             }
-        })
+        }).catch((error) => {
+            throw error;
+        });
     },
     async fetchUser(){
        return await apiService.getUser()
