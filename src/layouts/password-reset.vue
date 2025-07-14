@@ -52,12 +52,14 @@ function onSubmit(event: Event) {
     loading.value = true
     try {
         user.registerUser(password.value, passwordConfirmation.value)
-        router.push("/home")
         passwordUpdated.value = true
     } catch (error) {
         console.error(error)
     } finally {
         loading.value = false
+        if (passwordUpdated.value == true) {
+            router.push("/home")
+        }
     }
 }
 </script>
