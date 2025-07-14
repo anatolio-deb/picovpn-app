@@ -21,6 +21,8 @@
                 </v-btn>
             </v-form>
         </v-card>
+        <v-alert v-if="passwordUpdated" title="Password successfully updated" type="success">
+        </v-alert>
     </v-main>
 </template>
 
@@ -33,7 +35,8 @@ const form = ref(false);
 const password = ref("");
 const passwordConfirmation = ref("");
 const loading = ref(false);
-const user = useUserStore()
+const user = useUserStore();
+const passwordUpdated = ref(false);
 
 function required(v: any) {
     return !!v || "Field is required";
@@ -50,6 +53,7 @@ function onSubmit(event: Event) {
     try {
         user.registerUser(password.value, passwordConfirmation.value)
         router.push("/home")
+        passwordUpdated.value = true
     } catch (error) {
         console.error(error)
     } finally {
