@@ -11,25 +11,25 @@ import 'vuetify/styles'
 // Composables
 import { createVuetify } from 'vuetify'
 
-const myCustomLightTheme = {
-  dark: false,
-  colors: {
-    background: '#111318',
-    // surface:'#2A1458',
-    // 'surface-bright': '#2A1458',
-    // 'surface-light': '#2A1458',
-    // 'surface-variant': '#2A1458',
-    // 'on-surface-variant': '#2A1458',
-  }
-}
+// const myCustomLightTheme = {
+//   dark: false,
+//   colors: {
+//     background: '#111318',
+//     // surface:'#2A1458',
+//     // 'surface-bright': '#2A1458',
+//     // 'surface-light': '#2A1458',
+//     // 'surface-variant': '#2A1458',
+//     // 'on-surface-variant': '#2A1458',
+//   }
+// }
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   theme: {
     defaultTheme: 'myCustomLightTheme',
-    themes: {
-      myCustomLightTheme,
-    },
+    // themes: {
+    //   myCustomLightTheme,
+    // },
   },
 })
 
