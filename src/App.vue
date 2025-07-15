@@ -1,20 +1,24 @@
-<!-- <template>
+<template>
   <v-app>
-    <router-view />
+    <back-button></back-button>
+    <!-- <router-view /> -->
   </v-app>
 </template>
 
 <script lang="ts" setup>
-  //
-</script> -->
+import { init, backButton } from '@telegram-apps/sdk';
 
-<template>
-  <MainButton text="Open alert" @click="() => popup.showAlert('Hello!')" />
-</template>
+// Init the package and actualize all global dependencies.
+init();
 
-<script lang="ts" setup>
-import { MainButton } from 'vue-tg'
-import { usePopup } from 'vue-tg/latest'
+// Mount the back button component and retrieve its actual
+// state.
+backButton.mount();
 
-const popup = usePopup()
+// When a user clicked the back button, go back in the
+// navigation history.
+const off = backButton.onClick(() => {
+  off();
+  window.history.back();
+});
 </script>
