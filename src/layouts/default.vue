@@ -21,7 +21,7 @@ const props = defineProps<{ title: string, message: string }>()
 
 function open() {
   if (popup.isSupported()) {
-    popup.open(props);
+    popup.show(props);
     return;
   }
 
