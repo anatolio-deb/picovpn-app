@@ -19,7 +19,7 @@ import { popup } from '@telegram-apps/sdk-vue'
 
 const props = defineProps<{ title: string, message: string }>()
 
-function open() {
+function open(e: Event) {
   if (popup.isSupported()) {
     popup.show(props);
     return;
