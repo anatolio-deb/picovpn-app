@@ -25,18 +25,10 @@ export const useUserStore = defineStore('users', {
   },
   actions:{
     registerUser(password1: string, password2: string){
-      apiService.postUser({
+      return apiService.postUser({
         password: password1,
         password_confirmation: password2
-    }).then((response) => {
-            if (response.status === 200) {
-              this.userData = response.data.user
-            } else {
-                throw new Error(response.data.message);
-            }
-        }).catch((error) => {
-            throw error;
-        });
+    })
     },
     async fetchUser(){
        return await apiService.getUser()

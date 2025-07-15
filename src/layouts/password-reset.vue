@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import router from "@/router";
 import { ref } from "vue";
 import { useUserStore } from '@/stores/app';
 
@@ -51,15 +50,20 @@ function passwordConfirmed(v: any) {
 function onSubmit(event: Event) {
     loading.value = true
     try {
-        user.registerUser(password.value, passwordConfirmation.value)
-        passwordUpdated.value = true
+        user.registerUser(password.value, passwordConfirmation.value).then((response) => {
+            if (response.status === 200) {
+                user.userData = response.data.user
+                passwordUpdated.value = true
+            } else {
+                console.log(response.data.message);
+            }
+        }).catch((e) => {
+            console.error(e);
+        });
     } catch (error) {
         console.error(error)
     } finally {
         loading.value = false
-        // if (passwordUpdated.value == true) {
-        //     router.push("/home")
-        // }
     }
 }
 </script>
