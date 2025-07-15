@@ -12,7 +12,16 @@ import home from "@/layouts/home.vue";
 </script> -->
 
 <script setup lang="ts">
-import { initData } from '@telegram-apps/sdk';
+import { retrieveRawInitData, parseInitDataQuery } from '@telegram-apps/sdk';
+const username = ref('');
+
+onMounted(() => {
+  let rawInitData = retrieveRawInitData();
+  if (rawInitData != undefined) {
+    let initData = parseInitDataQuery(rawInitData)
+    username.value = initData.user?.username || ""
+  }
+})
 
 // {
 //   user: {
@@ -33,5 +42,5 @@ import { initData } from '@telegram-apps/sdk';
 </script>
 
 <template>
-  {{ initData }}
+  {{ username }}
 </template>
