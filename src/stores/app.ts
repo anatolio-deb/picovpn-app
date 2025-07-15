@@ -16,7 +16,8 @@ export const useUserStore = defineStore('users', {
       last_name: "",
       language_code: "",
       is_premium: false,
-    }
+    },
+    chatInstance: Number,
   }),
   getters:{
     initials: (state) => (state.userData.first_name.charAt(0) + state.userData.last_name.charAt(0)).toUpperCase(),

@@ -24,7 +24,7 @@
                                 Change Password
                             </v-btn>
                             <v-divider class="my-3"></v-divider>
-                            <v-btn variant="text" rounded>
+                            <v-btn variant="text" rounded href="/support">
                                 Support
                             </v-btn>
                         </div>

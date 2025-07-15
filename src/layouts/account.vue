@@ -61,7 +61,6 @@ import {
     useTonConnectUI
 } from "@townsquarelabs/ui-vue";
 
-
 // import { TonConnectUI } from '@tonconnect/ui'
 
 // const tonConnectUI = new TonConnectUI({
@@ -79,7 +78,7 @@ const { state, open, close } = useTonConnectModal();
 onMounted(() => {
     user.telegramAuth().then((response) => {
         if (response.status === 200) {
-            user.$patch({ userData: response.data.user })
+            user.$patch({ userData: response.data.user, chatInstance: response.data.chat_instance })
             try {
                 plan.fetchPlan()
                 daemons.fetchDaemons()
