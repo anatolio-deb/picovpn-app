@@ -49,21 +49,16 @@ function passwordConfirmed(v: any) {
 
 function onSubmit(event: Event) {
     loading.value = true
-    try {
-        user.registerUser(password.value, passwordConfirmation.value).then((response) => {
-            if (response.status === 200) {
-                user.userData = response.data.user
-                passwordUpdated.value = true
-            } else {
-                console.log(response.data.message);
-            }
-        }).catch((e) => {
-            console.error(e);
-        });
-    } catch (error) {
-        console.error(error)
-    } finally {
-        loading.value = false
-    }
+    user.registerUser(password.value, passwordConfirmation.value).then((response) => {
+        if (response.status === 200) {
+            user.userData = response.data.user
+            passwordUpdated.value = true
+        } else {
+            console.log(response.data.message);
+        }
+    }).catch((e) => {
+        console.error(e);
+    });
+    loading.value = false
 }
 </script>
