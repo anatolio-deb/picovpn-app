@@ -47,6 +47,9 @@ importers:
       vue-axios:
         specifier: ^3.5.2
         version: 3.5.2(axios@1.9.0)(vue@3.5.14(typescript@5.8.3))
+      vue-tg:
+        specifier: 0.9.0-beta.10
+        version: 0.9.0-beta.10(vue@3.5.14(typescript@5.8.3))
       vuetify:
         specifier: ^3.8.1
         version: 3.8.6(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.14(typescript@5.8.3))
@@ -1823,6 +1826,11 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
+  vue-tg@0.9.0-beta.10:
+    resolution: {integrity: sha512-ymcOZ4bUa1x+2nveAeNaVWiFsl8E7Itudyz4DKxYVwpE7ApZYwO/go9dchTKP4NIUaUDSeRqYro6Cmlh8xhjYA==}
+    peerDependencies:
+      vue: ^3
+
   vue-tsc@2.2.10:
     resolution: {integrity: sha512-jWZ1xSaNbabEV3whpIDMbjVSVawjAyW+x1n3JeGQo7S0uv2n9F/JMgWW90tGWNFRKya4YwKMZgCtr0vRAM7DeQ==}
     hasBin: true
@@ -3557,6 +3565,10 @@ snapshots:
   vue-router@4.5.1(vue@3.5.14(typescript@5.8.3)):
     dependencies:
       '@vue/devtools-api': 6.6.4
+      vue: 3.5.14(typescript@5.8.3)
+
+  vue-tg@0.9.0-beta.10(vue@3.5.14(typescript@5.8.3)):
+    dependencies:
       vue: 3.5.14(typescript@5.8.3)
 
   vue-tsc@2.2.10(typescript@5.8.3):
