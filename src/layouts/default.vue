@@ -12,25 +12,26 @@ import home from "@/layouts/home.vue";
 </script> -->
 
 <script setup lang="ts">
-/**
- * Component which opens native Telegram Popup.
- */
-import { popup } from '@telegram-apps/sdk-vue'
+import { initData } from '@telegram-apps/sdk';
 
-const props = defineProps<{ title: string, message: string }>()
-
-function open(e: Event) {
-  if (popup.isSupported()) {
-    popup.show(props);
-    return;
-  }
-
-  // Open fallback HTML dialog...
-}
+// {
+//   user: {
+//     id: 99281932,
+//     firstName: 'Andrew',
+//     lastName: 'Rogue',
+//     username: 'rogue',
+//     languageCode: 'en',
+//     isPremium: true,
+//     allowsWriteToPm: true,
+//   },
+//   hash: 'abcedef123',
+//   authDate: Date(1716922846000),
+//   startParam: 'debug',
+//   chatType: 'sender',
+//   chatInstance: '8428209589180549439',
+// };
 </script>
 
 <template>
-  <button aria-haspopup="dialog" @click="open">
-    Open popup
-  </button>
+  {{ initData }}
 </template>
