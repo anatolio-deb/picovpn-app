@@ -31,11 +31,8 @@ export const useUserStore = defineStore('users', {
         password_confirmation: password2
     })
     },
-    async fetchUser(){
-       return await apiService.getUser()
-    },
-    async telegramAuth(){
-      return await apiService.telegramAuth()
+    async fetchUser(username: string|undefined){
+       return await apiService.getUser(username)
     }
   }
 })

@@ -60,6 +60,8 @@ import {
     useTonAddress,
     useTonConnectUI
 } from "@townsquarelabs/ui-vue";
+import { retrieveRawInitData, parseInitDataQuery } from '@telegram-apps/sdk';
+
 
 // import { TonConnectUI } from '@tonconnect/ui'
 
@@ -76,21 +78,23 @@ const { state, open, close } = useTonConnectModal();
 
 
 onMounted(() => {
-    user.telegramAuth().then((response) => {
-        if (response.status === 200) {
-            user.$patch({ userData: response.data.user, chatInstance: response.data.chat_instance })
-            try {
-                plan.fetchPlan()
-                daemons.fetchDaemons()
-            } catch (error) {
-                console.error(error)
-            }
-        } else {
-            console.log(response.data.message);
+    let rawInitData = retrieveRawInitData();
+    if (rawInitData != undefined) {
+        try {
+            const initData = parseInitDataQuery(rawInitData)
+            user.fetchUser(initData.user?.username).then((response) => {
+                if (response.status === 200) {
+                    router.push("/account");
+                } else {
+                    router.push("/register")
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+        } catch (e) {
+            console.error(e)
         }
-    }).catch((error) => {
-        console.error(error);
-    })
+    }
 })
 
 function onClick(event: Event) {

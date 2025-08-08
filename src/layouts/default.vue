@@ -12,16 +12,12 @@ import home from "@/layouts/home.vue";
 </script> -->
 
 <script setup lang="ts">
-import { retrieveRawInitData, parseInitDataQuery } from '@telegram-apps/sdk';
-const username = ref('');
+import { useUserStore } from '@/stores/app';
+import { useRouter } from "vue-router";
+const user = useUserStore();
+const router = useRouter();
 
-onMounted(() => {
-  let rawInitData = retrieveRawInitData();
-  if (rawInitData != undefined) {
-    let initData = parseInitDataQuery(rawInitData)
-    username.value = initData.user?.username || ""
-  }
-})
+
 
 // {
 //   user: {
@@ -42,5 +38,4 @@ onMounted(() => {
 </script>
 
 <template>
-  {{ username }}
 </template>

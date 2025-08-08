@@ -9,7 +9,6 @@ import { createRouter, createWebHistory } from "vue-router/auto";
 import { setupLayouts } from "virtual:generated-layouts";
 import { routes } from "vue-router/auto-routes";
 import auth from "@/layouts/auth.vue";
-import home from "@/layouts/home.vue";
 import account from "@/layouts/account.vue"
 import passwordReset from "@/layouts/password-reset.vue";
 import buy from "@/layouts/buy.vue";
@@ -20,9 +19,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     ...setupLayouts(routes),
-    { path: "/", component: home },
+    { path: "/", component: account},
     { path: "/try", component: auth },
-    { path: "/account", component: account},
     {path:"/password-reset", component: passwordReset},
     {path:"/buy", component: buy},
     {path:"/support", component: Support}

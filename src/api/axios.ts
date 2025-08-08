@@ -1,5 +1,5 @@
 import axios from "axios"
-import { init, retrieveRawInitData } from "@telegram-apps/sdk";
+// import { init, retrieveRawInitData } from "@telegram-apps/sdk";
 
 
 interface UserData {
@@ -20,7 +20,7 @@ export interface Daemon{
 
 class ApiService {
     private axiosInstance;
-    private initData: string | null = null;
+    // private initData: string | null = null;
 
     constructor() {
         this.axiosInstance = axios.create({
@@ -32,68 +32,60 @@ class ApiService {
         });
     }
 
-    setInitData(initData: string) {
-        this.initData = initData;
-    }
+    // setInitData(initData: string) {
+    //     this.initData = initData;
+    // }
 
-    private getAuthHeader() {
-        return this.initData
-            ? { Authorization: `X-Telegram-Data ${this.initData}` }
-            : {};
-    }
+    // private getAuthHeader() {
+    //     return this.initData
+    //         ? { Authorization: `X-Telegram-Data ${this.initData}` }
+    //         : {};
+    // }
 
     postUser(data: UserData) {
-        return this.axiosInstance.post("/users", data, {
-            headers: this.getAuthHeader()
-        });
+        return this.axiosInstance.post("/users", data);
     }
 
-    telegramAuth() {
-        return this.axiosInstance.post("/auth", null, {
-            headers: this.getAuthHeader()
-        });
-    }
+    // telegramAuth() {
+    //     return this.axiosInstance.post("/auth", null, {
+    //         headers: this.getAuthHeader()
+    //     });
+    // }
 
-    async getUser() {
+    async getUser(username: string|undefined) {
         return await this.axiosInstance.get("/users", {
-            headers: this.getAuthHeader()
+            params:{
+                'username':username
+            }
         });
     }
 
-    isAuthenticated(): boolean {
-        return !!this.initData;
-    }
+    // isAuthenticated(): boolean {
+    //     return !!this.initData;
+    // }
 
     passwordReset(data: UserData) {
-        return this.axiosInstance.post("/password-reset", data, {
-            headers: this.getAuthHeader()
-        });
+        return this.axiosInstance.post("/password-reset", data);
     }
 
     getPlan(){
-         return this.axiosInstance.get("/plans", {
-            headers: this.getAuthHeader()
-        });
+         return this.axiosInstance.get("/plans");
     }
 
     getDaemons(){
-        return this.axiosInstance.get("/daemons", {
-            headers: this.getAuthHeader()
-        });
+        return this.axiosInstance.get("/daemons");
     }
 
     planUpdate(data: Plan){
-        return this.axiosInstance.post("/plans", data, {
-            headers: this.getAuthHeader()
-        });
+        return this.axiosInstance.post("/plans", data);
     }
 }
 
 const apiService = new ApiService();
-try {
-    const initData = retrieveRawInitData() || "";
-    apiService.setInitData(initData);
-} catch (error){
-    console.error(error)
-}
+// try {
+//     const initData = retrieveRawInitData() || "";
+//     apiService.setInitData(initData);
+// } catch (error){
+//     console.error(error)
+// }
 export default apiService;
